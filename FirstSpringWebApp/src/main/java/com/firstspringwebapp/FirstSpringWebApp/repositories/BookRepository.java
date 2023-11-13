@@ -1,6 +1,6 @@
-package repositories;
+package com.firstspringwebapp.FirstSpringWebApp.repositories;
 
-import domain.Book;
+import com.firstspringwebapp.FirstSpringWebApp.domain.Book;
 import org.springframework.data.repository.CrudRepository;
 
 public interface BookRepository extends CrudRepository<Book, Long> {

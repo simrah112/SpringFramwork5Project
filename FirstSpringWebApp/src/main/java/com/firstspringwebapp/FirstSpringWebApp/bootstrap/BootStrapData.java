@@ -1,19 +1,19 @@
-package bootstrap;
+package com.firstspringwebapp.FirstSpringWebApp.bootstrap;
 
-import domain.Author;
-import domain.Book;
+import com.firstspringwebapp.FirstSpringWebApp.domain.Author;
+import com.firstspringwebapp.FirstSpringWebApp.domain.Book;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import repositories.AuthorRepository;
-import repositories.BookRepository;
+import com.firstspringwebapp.FirstSpringWebApp.repositories.AuthorRepository;
+import com.firstspringwebapp.FirstSpringWebApp.repositories.BookRepository;
 
 @Component
-public class BootStrapData implements ApplicationListener<ContextRefreshedEvent> {
+public class BootStrapData implements CommandLineRunner {
 
-    private AuthorRepository authorRepository;
-    private BookRepository bookRepository;
+    private final AuthorRepository authorRepository;
+    private final BookRepository bookRepository;
 
     public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository) {
         this.authorRepository = authorRepository;
@@ -22,11 +22,7 @@ public class BootStrapData implements ApplicationListener<ContextRefreshedEvent>
 
 
     @Override
-    public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        initData();
-    }
-
-    private void initData() {
+    public void run(String... args) throws Exception {
         //author eric upload
         Author eric = new Author("Dave", "Evens");
         Book ddd = new Book("Domain Driven", "123123");
@@ -37,7 +33,7 @@ public class BootStrapData implements ApplicationListener<ContextRefreshedEvent>
 
         System.out.println("Bootstrap application started running");
         System.out.println("Number of books " + bookRepository.count());
-       // System.out.println("Number of authors" + authorRepository.count());
+        // System.out.println("Number of authors" + authorRepository.count());
 
     }
 }
